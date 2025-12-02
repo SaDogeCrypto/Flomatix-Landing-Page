@@ -9,7 +9,7 @@ export function Navigation() {
           <img
             src="/images/modern-20x-20letter-20logo-20-28400-20x-20200-20px-29-20-281280-20x-20720-20px-29-20-28240-20x-20100-20px-29.svg"
             alt="Mini by Flomatix"
-            className="h-16 w-auto object-contain"
+            className="h-12 md:h-16 w-auto object-contain"
           />
         </Link>
 
