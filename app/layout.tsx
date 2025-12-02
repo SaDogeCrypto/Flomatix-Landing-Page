@@ -1,7 +1,14 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
+import { Poppins } from "next/font/google"
 import "./globals.css"
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-poppins",
+})
 
 export const metadata: Metadata = {
   title: "Mini - Your Project Management Assistant for Microsoft Teams",
@@ -16,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.variable}>
       <body className="font-sans antialiased">
         {children}
         <Analytics />
