@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   generator: "v0.app",
   icons: {
     icon: "/favicon.png",
-    apple: "/favicon.png",
+    apple: "/apple-icon.png",
   },
 }
 
