@@ -7,9 +7,9 @@ export function Navigation() {
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 flex items-center justify-between h-24 md:h-20">
         <Link href="/" className="flex items-center">
           <img
-            src="/images/modern-20x-20letter-20logo-20-28400-20x-20200-20px-29-20-281280-20x-20720-20px-29-20-28240-20x-20100-20px-29-20-287-29.png"
-            alt="Mini by Flomatix"
-            className="h-16 md:h-14 w-auto"
+            src="/images/copy-20of-20modern-20x-20letter-20logo-20-28400-20x-20200-20px-29-20-281280-20x-20720-20px-29-20-28240-20x-20100-20px-29-20-282-29.png"
+            alt="Buzz by Flomatix"
+            className="h-20 md:h-16 w-auto"
           />
         </Link>
 
@@ -32,7 +32,7 @@ export function Navigation() {
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-ms-blue text-white rounded font-semibold text-sm hover:bg-ms-blue-dark transition-colors"
           >
             <Download className="w-4 h-4" />
-            Get Mini for Teams
+            Get Buzz for Teams
           </Link>
         </div>
       </div>
