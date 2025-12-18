@@ -1,18 +1,18 @@
 const steps = [
   {
     number: 1,
-    title: "Add Mini to Teams",
-    description: "Install from the Teams app store. One click for your whole organization.",
+    title: "Add Buzz to Teams",
+    description: "Install from the Teams app store in seconds. Works immediately.",
   },
   {
     number: 2,
-    title: "Create Your Project",
-    description: "Set up milestones, add tasks, and invite your team. Mini learns who's working on what.",
+    title: "Type a Buzz",
+    description: "Tell Buzz who to message, when, and what to say. Natural language, no forms.",
   },
   {
     number: 3,
-    title: "Let Mini Do the Rest",
-    description: "Mini checks in with your team, collects updates, and keeps everyone informed automatically.",
+    title: "Buzz delivers it",
+    description: "At the right time, Buzz sends your message. You get a confirmation. Done.",
   },
 ]
 
@@ -21,9 +21,9 @@ export function HowItWorks() {
     <section id="how-it-works" className="py-24 px-6 bg-ms-gray-10">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-ms-black mb-4">Up and running in minutes</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold text-ms-black mb-4">Three steps. That's it.</h2>
           <p className="text-lg text-ms-gray-130 max-w-[600px] mx-auto">
-            Getting started with Mini is as easy as adding any Teams app.
+            No setup, no configuration, no learning curve.
           </p>
         </div>
 

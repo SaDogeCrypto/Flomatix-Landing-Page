@@ -2,19 +2,19 @@ import { Star } from "lucide-react"
 
 const testimonials = [
   {
-    text: "Finally, status updates that don't feel like pulling teeth. My team actually responds to Mini because it feels like chatting with a colleague.",
+    text: "I stopped dropping follow-ups. Buzz makes it effortless to remember without adding another system to my workflow.",
     author: "Jessica Martinez",
     role: "Engineering Manager",
     initials: "JM",
   },
   {
-    text: "We eliminated our Monday status meetings. Mini keeps everyone informed async, and I get 2 hours of my week back.",
+    text: "It made me look more on top of things. I can schedule check-ins ahead of time and stay proactive with my team.",
     author: "David Kim",
-    role: "Product Lead, Series B Startup",
+    role: "Product Lead",
     initials: "DK",
   },
   {
-    text: "The blocker detection is a game-changer. I find out about issues immediately instead of at Friday's standup when it's too late.",
+    text: "It saved awkward 'sorry I forgot' moments. Now I never miss a follow-up, even when I'm swamped.",
     author: "Rachel Patel",
     role: "Director of Operations",
     initials: "RP",
@@ -26,9 +26,9 @@ export function Testimonials() {
     <section className="py-24 px-6 bg-white">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-ms-black mb-4">Loved by teams everywhere</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold text-ms-black mb-4">What people are saying</h2>
           <p className="text-lg text-ms-gray-130 max-w-[600px] mx-auto">
-            See what project managers and team leads are saying about Mini.
+            Real results from teams using Buzz every day.
           </p>
         </div>
 

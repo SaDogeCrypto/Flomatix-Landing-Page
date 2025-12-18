@@ -1,37 +1,36 @@
-import { MessageSquare, Clock, Wrench, Users, LayoutGrid, Shield } from "lucide-react"
+import { MessageSquare, Clock, Globe, Users, LayoutGrid, Shield } from "lucide-react"
 
 const features = [
   {
     icon: MessageSquare,
-    title: "Conversational Updates",
-    description:
-      "Team members chat with Mini naturally. No forms, no portals — just a quick conversation to share progress.",
-  },
-  {
-    icon: Clock,
-    title: "Smart Reminders",
-    description:
-      "Mini reaches out at the right time. Gentle nudges before deadlines, follow-ups when updates are overdue.",
-  },
-  {
-    icon: Wrench,
-    title: "Blocker Detection",
-    description: "When someone's stuck, Mini flags it immediately. No more surprises at the status meeting.",
+    title: "Natural language scheduling",
+    description: "Just say who, what, and when. No forms, no complex syntax — Buzz understands plain English.",
   },
   {
     icon: Users,
-    title: "Team Dashboard",
-    description: "See all your projects, milestones, and team progress in one place. Always know where things stand.",
-  },
-  {
-    icon: LayoutGrid,
-    title: "Native Teams Integration",
-    description: "Lives right where your team already works. No new app to learn, no context switching.",
+    title: "Human-tone delivery",
+    description:
+      "Messages feel like you sent them yourself. No robotic 'reminder from bot' — just your words, delivered.",
   },
   {
     icon: Shield,
-    title: "Enterprise Ready",
-    description: "SOC 2 compliant. Your data stays in your tenant. Built with enterprise security from day one.",
+    title: "Quiet confirmations",
+    description: "You get a simple receipt so you trust it worked. No noise, no unnecessary notifications.",
+  },
+  {
+    icon: Globe,
+    title: "Time zone aware",
+    description: "Delivered in the recipient's local time automatically. Works seamlessly across distributed teams.",
+  },
+  {
+    icon: Clock,
+    title: "No task system",
+    description: "No projects, no boards, no overhead. Just send a message later. That's it.",
+  },
+  {
+    icon: LayoutGrid,
+    title: "Teams-native",
+    description: "Lives in chat. No context switching, no separate app to check. Works where you already work.",
   },
 ]
 
@@ -40,9 +39,9 @@ export function Features() {
     <section id="features" className="py-24 px-6 bg-white">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-ms-black mb-4">Everything you need to stay in sync</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold text-ms-black mb-4">Time-shifted messaging, simplified</h2>
           <p className="text-lg text-ms-gray-130 max-w-[600px] mx-auto">
-            Mini handles the busywork of project management so you can focus on what matters.
+            All the features you need to send messages later, without the complexity of task management.
           </p>
         </div>
 

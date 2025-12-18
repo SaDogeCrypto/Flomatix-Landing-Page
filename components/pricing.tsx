@@ -3,26 +3,30 @@ import Link from "next/link"
 
 const plans = [
   {
-    name: "Starter",
+    name: "Free",
     price: "Free",
-    description: "For small teams getting started",
-    features: ["Up to 3 active projects", "Up to 5 team members", "Conversational updates", "Basic reminders"],
+    description: "For personal use",
+    features: [
+      "Up to 10 scheduled messages/month",
+      "Natural language scheduling",
+      "Delivery confirmations",
+      "Teams-native experience",
+    ],
     featured: false,
   },
   {
     name: "Pro",
     price: "$8",
-    priceSuffix: "/ seat / month",
-    description: "For growing teams that need more",
+    priceSuffix: "/ user / month",
+    description: "For professionals and teams",
     features: [
-      "Unlimited projects",
-      "Unlimited team members",
-      "Smart reminders & escalation",
-      "Blocker detection",
-      "Advanced analytics",
+      "Unlimited scheduled messages",
+      "Time zone awareness",
+      "Recurring messages",
+      "Team access",
       "Priority support",
     ],
-    featured: true,
+    featured: false,
   },
 ]
 
@@ -45,11 +49,6 @@ export function Pricing() {
                 plan.featured ? "border-2 border-ms-blue" : "border border-ms-gray-30"
               }`}
             >
-              {plan.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-ms-blue text-white px-4 py-1 rounded-full text-xs font-semibold">
-                  Most Popular
-                </div>
-              )}
               <h3 className="text-2xl font-semibold text-ms-black mb-2">{plan.name}</h3>
               <div className="text-5xl font-bold text-ms-blue mb-2">
                 {plan.price}

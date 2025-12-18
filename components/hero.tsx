@@ -16,15 +16,15 @@ export function Hero() {
           </div>
 
           <h1 className="text-4xl md:text-[52px] font-semibold leading-tight text-ms-black mb-5">
-            Project updates made{" "}
+            Send a message later —{" "}
             <span className="bg-gradient-to-r from-ms-blue to-teams-purple bg-clip-text text-transparent">
-              effortless
+              without creating a task
             </span>
           </h1>
 
           <p className="text-lg text-ms-gray-130 mb-8 max-w-md leading-relaxed">
-            Mini is your friendly project assistant that lives in Teams. Get status updates from your team through
-            natural conversation — no more chasing people down.
+            Tell Buzz who to nudge and when. It delivers the message at the right moment — quietly and reliably — right
+            in Microsoft Teams.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -39,7 +39,7 @@ export function Hero() {
               href="#"
               className="inline-flex items-center gap-2 px-5 py-2.5 border border-ms-blue text-ms-blue rounded font-semibold text-sm hover:bg-ms-gray-10 transition-colors"
             >
-              Watch Demo
+              See examples
             </Link>
           </div>
         </div>
@@ -89,19 +89,13 @@ function TeamsMockup() {
         {/* Chat */}
         <div className="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
           <ChatMessage
-            avatar="M"
-            isMini
-            message="Hi Sarah! 👋 Quick check-in on the homepage redesign — how's it going?"
+            avatar="S"
+            message="Buzz @Alex tomorrow 9am: Did you have a chance to review the deck?"
             delay={0}
           />
-          <ChatMessage avatar="S" message="Almost done! Just waiting on final assets from design." delay={1} />
-          <ChatMessage
-            avatar="M"
-            isMini
-            message="Got it! I'll flag that as a blocker. Should I nudge the design team?"
-            delay={2}
-          />
-          <ChatMessage avatar="S" message="Yes please, that would help!" delay={3} />
+          <ChatMessage avatar="M" isMini message="✅ I'll message Alex tomorrow at 9:00 AM" delay={1} />
+          <ChatMessage avatar="S" message="Buzz me Friday 4pm: Follow up with vendor on contract redlines" delay={2} />
+          <ChatMessage avatar="M" isMini message="✅ I'll remind you Friday at 4:00 PM" delay={3} />
         </div>
       </div>
     </div>
