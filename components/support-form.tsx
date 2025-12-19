@@ -23,9 +23,11 @@ export function SupportForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    console.log("[v0] Form submitted with data:", formData)
     setIsSubmitting(true)
 
     try {
+      console.log("[v0] Sending request to /api/support")
       const response = await fetch("/api/support", {
         method: "POST",
         headers: {
@@ -34,9 +36,28 @@ export function SupportForm() {
         body: JSON.stringify(formData),
       })
 
+      console.log("[v0] Response status:", response.status)
+
       if (!response.ok) {
-        throw new Error("Failed to send message")
+        const errorData = await response.json()
+        console.error("[v0] Error response from server:", errorData)
+
+        // Show detailed error to user
+        toast({
+          title: "Error sending message",
+          description: errorData.error || "Failed to send message. Please try again.",
+          variant: "destructive",
+        })
+
+        // Also log to console for debugging
+        if (errorData.details) {
+          console.error("[v0] Server error details:", errorData.details)
+        }
+        return
       }
+
+      const result = await response.json()
+      console.log("[v0] Success response:", result)
 
       toast({
         title: "Message sent!",
@@ -52,6 +73,7 @@ export function SupportForm() {
         message: "",
       })
     } catch (error) {
+      console.error("[v0] Error sending support form:", error)
       toast({
         title: "Error",
         description: "Failed to send message. Please try again or email us directly.",
