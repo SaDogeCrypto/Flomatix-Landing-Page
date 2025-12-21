@@ -45,7 +45,7 @@ export function Hero() {
         </div>
 
         <div className="relative">
-          <div className="w-full rounded-xl shadow-2xl bg-ms-gray-20 aspect-[16/10] overflow-hidden">
+          <div className="w-full rounded-xl shadow-2xl bg-white overflow-hidden">
             <TeamsMockup />
           </div>
         </div>
@@ -64,38 +64,70 @@ function TeamsIcon() {
 
 function TeamsMockup() {
   return (
-    <div className="w-full h-full bg-gradient-to-b from-[#f5f5f5] to-[#ebebeb] flex flex-col">
-      {/* Header */}
-      <div className="h-12 bg-teams-purple flex items-center px-4 gap-3">
-        <div className="flex gap-1.5">
-          <span className="w-3 h-3 rounded-full bg-white/30" />
-          <span className="w-3 h-3 rounded-full bg-white/30" />
-          <span className="w-3 h-3 rounded-full bg-white/30" />
+    <div className="w-full bg-white p-6 space-y-4">
+      {/* Outgoing Message - Setting up the reminder (right side) */}
+      <div className="flex justify-end gap-2">
+        <div className="bg-teams-purple/10 rounded-lg p-4 border border-teams-purple/20 max-w-[75%]">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xs text-gray-600">Remind</span>
+            <span className="text-sm font-semibold text-teams-purple">Alex Johnson</span>
+          </div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs text-gray-600">about</span>
+            <span className="text-sm text-gray-800">"Q1 presentation for the migration project"</span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            <button className="px-2.5 py-1.5 bg-white border border-gray-300 rounded text-xs font-medium text-gray-700 flex items-center gap-1">
+              <span>⚡</span> Now
+            </button>
+            <button className="px-2.5 py-1.5 bg-white border border-gray-300 rounded text-xs font-medium text-gray-700 flex items-center gap-1">
+              <span>🕐</span> Later today
+            </button>
+            <button className="px-2.5 py-1.5 bg-white border border-gray-300 rounded text-xs font-medium text-gray-700 flex items-center gap-1">
+              <span>☁️</span> Tomorrow
+            </button>
+            <button className="px-2.5 py-1.5 bg-teams-purple border-2 border-teams-purple rounded text-xs font-semibold text-white flex items-center gap-1">
+              <span>📅</span> Later this week
+            </button>
+          </div>
         </div>
-        <div className="text-white text-sm font-semibold mx-auto">Mini • Project Assistant</div>
+        <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-500 text-white text-xs font-semibold flex-shrink-0">
+          SC
+        </div>
       </div>
 
-      {/* Body */}
-      <div className="flex-1 flex">
-        {/* Sidebar */}
-        <div className="w-[68px] bg-[#ebebeb] border-r border-[#ddd] flex flex-col items-center py-3 gap-2">
-          <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-lg">📊</div>
-          <div className="w-10 h-10 rounded-lg bg-teams-purple text-white flex items-center justify-center text-lg">
-            💬
-          </div>
-          <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-lg">📁</div>
+      {/* Incoming Message - Buzz notification (left side) */}
+      <div className="flex justify-start gap-2">
+        <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 text-white text-xs font-semibold flex-shrink-0">
+          AJ
         </div>
-
-        {/* Chat */}
-        <div className="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
-          <ChatMessage
-            avatar="S"
-            message="Buzz @Alex tomorrow 9am: Did you have a chance to review the deck?"
-            delay={0}
-          />
-          <ChatMessage avatar="M" isMini message="✅ I'll message Alex tomorrow at 9:00 AM" delay={1} />
-          <ChatMessage avatar="S" message="Buzz me Friday 4pm: Follow up with vendor on contract redlines" delay={2} />
-          <ChatMessage avatar="M" isMini message="✅ I'll remind you Friday at 4:00 PM" delay={3} />
+        <div className="max-w-[75%]">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <div className="flex items-center gap-1.5 mb-2">
+              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-[8px] font-semibold">
+                AJ
+              </div>
+              <span className="text-xs font-semibold text-gray-800">Sarah Chen is checking in</span>
+            </div>
+            <div className="text-xs text-gray-600 mb-3">About: "Q1 presentation for the migration project"</div>
+            <div className="flex flex-wrap gap-1.5">
+              <button className="px-2.5 py-1.5 bg-white border border-gray-300 rounded text-xs font-medium text-gray-700 hover:bg-gray-50 flex items-center gap-1">
+                <span>✅</span> Done
+              </button>
+              <button className="px-2.5 py-1.5 bg-white border border-gray-300 rounded text-xs font-medium text-gray-700 hover:bg-gray-50 flex items-center gap-1">
+                <span>😴</span> Snooze 1h
+              </button>
+              <button className="px-2.5 py-1.5 bg-white border border-gray-300 rounded text-xs font-medium text-gray-700 hover:bg-gray-50 flex items-center gap-1">
+                <span>☁️</span> Tomorrow
+              </button>
+              <button className="px-2.5 py-1.5 bg-white border border-gray-300 rounded text-xs font-medium text-gray-700 hover:bg-gray-50 flex items-center gap-1">
+                <span>📅</span> Next week
+              </button>
+              <button className="px-2.5 py-1.5 bg-white border border-gray-300 rounded text-xs font-medium text-gray-700 hover:bg-gray-50 flex items-center gap-1">
+                <span>🔕</span> No more buzzes
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

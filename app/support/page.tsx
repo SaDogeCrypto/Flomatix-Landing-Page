@@ -62,8 +62,7 @@ export default function SupportPage() {
               <AccordionItem value="item-5">
                 <AccordionTrigger className="text-left">How do I cancel a scheduled buzz?</AccordionTrigger>
                 <AccordionContent className="text-ms-gray-130">
-                  Currently, scheduled buzzes cannot be cancelled after creation. We recommend double-checking
-                  recipients and timing before sending.
+                  You can simply click cancel on any undelivered Buzz to cancel it.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
