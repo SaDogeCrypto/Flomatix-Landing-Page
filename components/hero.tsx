@@ -104,9 +104,7 @@ function TeamsMockup() {
         <div className="max-w-[75%]">
           <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <div className="flex items-center gap-1.5 mb-2">
-              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-[8px] font-semibold">
-                AJ
-              </div>
+             
               <span className="text-xs font-semibold text-gray-800">Sarah Chen is checking in</span>
             </div>
             <div className="text-xs text-gray-600 mb-3">About: "Q1 presentation for the migration project"</div>
