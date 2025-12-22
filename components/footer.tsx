@@ -15,12 +15,12 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-4">
               <div className="w-9 h-9 bg-gradient-to-br from-ms-blue to-teams-purple rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                M
+                B
               </div>
-              <div className="text-xl font-semibold">Mini</div>
+              <div className="text-xl font-semibold">Buzz</div>
             </Link>
             <p className="text-sm text-white/70 leading-relaxed">
-              Your friendly project assistant for Microsoft Teams. Making status updates effortless.
+              One-touch follow-ups for Microsoft Teams. Never forget to check in again.
             </p>
           </div>
 
@@ -42,7 +42,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
-          <p>© 2025 Mini by Flomatix. All rights reserved.</p>
+          <p>© 2025 Buzz by Flomatix. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">
               Privacy Policy

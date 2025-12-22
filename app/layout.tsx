@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Analytics } from "@vercel/analytics/next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
 
@@ -11,9 +10,9 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Mini - Your Project Management Assistant for Microsoft Teams",
+  title: "Buzz - One-Touch Follow-Ups for Microsoft Teams",
   description:
-    "Mini is your friendly project assistant that lives in Teams. Get status updates from your team through natural conversation.",
+    "Buzz is your follow-up assistant for Microsoft Teams. Schedule gentle reminders and get one-tap responses — Done, Snooze, or Reschedule.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.png",
@@ -30,7 +29,6 @@ export default function RootLayout({
     <html lang="en" className={poppins.variable}>
       <body className="font-sans antialiased">
         {children}
-        <Analytics />
       </body>
     </html>
   )

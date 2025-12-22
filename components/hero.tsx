@@ -16,15 +16,14 @@ export function Hero() {
           </div>
 
           <h1 className="text-4xl md:text-[52px] font-semibold leading-tight text-ms-black mb-5">
-            Send a message later —{" "}
+            One-touch follow-ups —{" "}
             <span className="bg-gradient-to-r from-ms-blue to-teams-purple bg-clip-text text-transparent">
-              without creating a task
+              without the overhead
             </span>
           </h1>
 
           <p className="text-lg text-ms-gray-130 mb-8 max-w-md leading-relaxed">
-            Tell Buzz who to nudge and when. It delivers the message at the right moment — quietly and reliably — right
-            in Microsoft Teams.
+            Schedule gentle reminders to check in with your team. Recipients can respond with one tap — Done, Snooze, or Reschedule. No task boards, no complexity.
           </p>
 
           <div className="flex flex-wrap gap-4">

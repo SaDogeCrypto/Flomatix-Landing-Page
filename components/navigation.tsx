@@ -7,7 +7,7 @@ export function Navigation() {
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 flex items-center justify-between h-24 md:h-20">
         <Link href="/" className="flex items-center">
           <img
-            src="/images/copy-20of-20modern-20x-20letter-20logo-20-28400-20x-20200-20px-29-20-281280-20x-20720-20px-29-20-28240-20x-20100-20px-29-20-282-29.png"
+            src="/images/buzz-logo.png"
             alt="Buzz by Flomatix"
             className="h-20 md:h-16 w-auto"
           />

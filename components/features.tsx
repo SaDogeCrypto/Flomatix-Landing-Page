@@ -1,31 +1,30 @@
-import { MessageSquare, Clock, Globe, Users, LayoutGrid, Shield } from "lucide-react"
+import { MessageSquare, Clock, Globe, Zap, LayoutGrid, Shield } from "lucide-react"
 
 const features = [
   {
+    icon: Zap,
+    title: "One-touch responses",
+    description: "Recipients tap Done, Snooze, or Reschedule — no typing required. Follow-ups resolve in seconds.",
+  },
+  {
     icon: MessageSquare,
-    title: "Natural language scheduling",
-    description: "Just say who, what, and when. No forms, no complex syntax — Buzz understands plain English.",
-  },
-  {
-    icon: Users,
-    title: "Human-tone delivery",
-    description:
-      "Messages feel like you sent them yourself. No robotic 'reminder from bot' — just your words, delivered.",
-  },
-  {
-    icon: Shield,
-    title: "Quiet confirmations",
-    description: "You get a simple receipt so you trust it worked. No noise, no unnecessary notifications.",
-  },
-  {
-    icon: Globe,
-    title: "Time zone aware",
-    description: "Delivered in the recipient's local time automatically. Works seamlessly across distributed teams.",
+    title: "Natural language commands",
+    description: "Type 'SEND @Sarah A BUZZ tomorrow ABOUT the report' — Buzz handles the rest. No forms, no menus.",
   },
   {
     icon: Clock,
-    title: "No task system",
-    description: "No projects, no boards, no overhead. Just send a message later. That's it.",
+    title: "Thread-based follow-ups",
+    description: "Chain multiple check-ins in a conversation. Keep related follow-ups organized and contextual.",
+  },
+  {
+    icon: Shield,
+    title: "Privacy-first",
+    description: "Data auto-deleted after 90 days. Minimal collection, encrypted storage. Your conversations stay yours.",
+  },
+  {
+    icon: Globe,
+    title: "Enterprise-ready",
+    description: "Multi-tenant support, rate limiting, and Azure infrastructure. Built for teams of any size.",
   },
   {
     icon: LayoutGrid,
@@ -39,9 +38,9 @@ export function Features() {
     <section id="features" className="py-24 px-6 bg-white">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-ms-black mb-4">Time-shifted messaging, simplified</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold text-ms-black mb-4">Follow-ups that actually get done</h2>
           <p className="text-lg text-ms-gray-130 max-w-[600px] mx-auto">
-            All the features you need to send messages later, without the complexity of task management.
+            Gentle reminders with one-tap responses. No task boards, no complexity — just simple check-ins.
           </p>
         </div>
 

@@ -2,19 +2,19 @@ import { Star } from "lucide-react"
 
 const testimonials = [
   {
-    text: "I stopped dropping follow-ups. Buzz makes it effortless to remember without adding another system to my workflow.",
+    text: "The one-tap responses are genius. My team actually replies to check-ins now instead of ignoring them.",
     author: "Jessica Martinez",
     role: "Engineering Manager",
     initials: "JM",
   },
   {
-    text: "It made me look more on top of things. I can schedule check-ins ahead of time and stay proactive with my team.",
+    text: "I schedule all my follow-ups on Monday morning and forget about them. Buzz handles the rest — my team thinks I'm incredibly organized.",
     author: "David Kim",
     role: "Product Lead",
     initials: "DK",
   },
   {
-    text: "It saved awkward 'sorry I forgot' moments. Now I never miss a follow-up, even when I'm swamped.",
+    text: "No more 'sorry I forgot' moments. The snooze button means nothing falls through the cracks.",
     author: "Rachel Patel",
     role: "Director of Operations",
     initials: "RP",

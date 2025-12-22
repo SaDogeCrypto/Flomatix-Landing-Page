@@ -6,13 +6,13 @@ const steps = [
   },
   {
     number: 2,
-    title: "Type a Buzz",
-    description: "Tell Buzz who to message, when, and what to say. Natural language, no forms.",
+    title: "Send a Buzz",
+    description: "Type: SEND @Sarah A BUZZ tomorrow ABOUT the quarterly report",
   },
   {
     number: 3,
-    title: "Buzz delivers it",
-    description: "At the right time, Buzz sends your message. You get a confirmation. Done.",
+    title: "They respond in one tap",
+    description: "Sarah gets the reminder and taps Done, Snooze, or Reschedule. You're notified.",
   },
 ]
 
