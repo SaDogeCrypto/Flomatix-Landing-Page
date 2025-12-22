@@ -1,6 +1,16 @@
 const { EmailClient } = require("@azure/communication-email");
 
 module.exports = async function (context, req) {
+  // Handle GET requests for health check
+  if (req.method === "GET") {
+    context.res = {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: "ok", message: "Support API is running" })
+    };
+    return;
+  }
+
   context.log("Support form submission received");
 
   try {
