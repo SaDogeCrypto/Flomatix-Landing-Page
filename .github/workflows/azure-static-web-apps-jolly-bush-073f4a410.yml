@@ -36,6 +36,17 @@ jobs:
       - name: Install API dependencies
         run: cd api && npm install
 
+      - name: Debug - List files
+        run: |
+          echo "=== Root directory ==="
+          ls -la
+          echo "=== API directory ==="
+          ls -la api/
+          echo "=== API support directory ==="
+          ls -la api/support/
+          echo "=== Out directory ==="
+          ls -la out/ | head -20
+
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
