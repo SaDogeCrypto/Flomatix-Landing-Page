@@ -1,11 +1,28 @@
 const { EmailClient } = require("@azure/communication-email");
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Content-Type": "application/json"
+};
+
 module.exports = async function (context, req) {
+  // Handle CORS preflight
+  if (req.method === "OPTIONS") {
+    context.res = {
+      status: 204,
+      headers: corsHeaders,
+      body: ""
+    };
+    return;
+  }
+
   // Handle GET requests for health check
   if (req.method === "GET") {
     context.res = {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: corsHeaders,
       body: JSON.stringify({ status: "ok", message: "Support API is running" })
     };
     return;
@@ -23,7 +40,7 @@ module.exports = async function (context, req) {
       context.log("Validation failed - missing fields");
       context.res = {
         status: 400,
-        headers: { "Content-Type": "application/json" },
+        headers: corsHeaders,
         body: JSON.stringify({ error: "All fields are required" })
       };
       return;
@@ -36,7 +53,7 @@ module.exports = async function (context, req) {
       context.log.error("AZURE_COMMUNICATION_CONNECTION_STRING is not configured");
       context.res = {
         status: 500,
-        headers: { "Content-Type": "application/json" },
+        headers: corsHeaders,
         body: JSON.stringify({ error: "Email service not configured" })
       };
       return;
@@ -46,7 +63,7 @@ module.exports = async function (context, req) {
       context.log.error("AZURE_SENDER_EMAIL is not configured");
       context.res = {
         status: 500,
-        headers: { "Content-Type": "application/json" },
+        headers: corsHeaders,
         body: JSON.stringify({ error: "Sender email not configured" })
       };
       return;
@@ -82,7 +99,7 @@ module.exports = async function (context, req) {
 
     context.res = {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: corsHeaders,
       body: JSON.stringify({ success: true })
     };
   } catch (error) {
@@ -90,7 +107,7 @@ module.exports = async function (context, req) {
     const errorMessage = error instanceof Error ? error.message : "Failed to send message. Please try again.";
     context.res = {
       status: 500,
-      headers: { "Content-Type": "application/json" },
+      headers: corsHeaders,
       body: JSON.stringify({
         error: errorMessage,
         details: error instanceof Error ? error.stack : undefined
