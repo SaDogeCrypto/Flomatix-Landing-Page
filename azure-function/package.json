@@ -1,0 +1,8 @@
+{
+  "name": "buzz-support-api",
+  "version": "1.0.0",
+  "main": "support/index.js",
+  "dependencies": {
+    "@azure/communication-email": "1.1.0"
+  }
+}

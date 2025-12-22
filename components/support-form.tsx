@@ -27,8 +27,8 @@ export function SupportForm() {
     setIsSubmitting(true)
 
     try {
-      console.log("[v0] Sending request to /api/support")
-      const response = await fetch("/api/support", {
+      console.log("[v0] Sending request to support API")
+      const response = await fetch("https://buzz-support-api.azurewebsites.net/api/support", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
