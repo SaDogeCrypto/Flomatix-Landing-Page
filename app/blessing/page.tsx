@@ -2,10 +2,12 @@
 
 import { useState, useRef } from "react"
 import Link from "next/link"
+import { RitualNamePad } from "@/components/ritual-name-pad"
 
 export default function BlessingPage() {
   const [showNameInput, setShowNameInput] = useState(false)
   const [recipientName, setRecipientName] = useState("")
+  const [nameConfirmed, setNameConfirmed] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -22,6 +24,11 @@ export default function BlessingPage() {
 
   const handleVideoPlay = () => setIsPlaying(true)
   const handleVideoPause = () => setIsPlaying(false)
+
+  const handleNameComplete = (name: string) => {
+    setRecipientName(name)
+    setNameConfirmed(true)
+  }
 
   return (
     <main className="min-h-screen min-h-dvh bg-gradient-to-b from-[#FAFAFA] to-[#F5F5F4] flex flex-col">
@@ -92,44 +99,41 @@ export default function BlessingPage() {
 
           {/* CTA section */}
           <div className="space-y-4">
-            {!showNameInput ? (
+            {!showNameInput && !nameConfirmed && (
               <button
                 onClick={() => setShowNameInput(true)}
                 className="w-full h-[52px] bg-gray-900 text-white rounded-xl font-medium text-[15px] sm:text-base shadow-[0_2px_8px_-2px_rgba(0,0,0,0.2)] hover:bg-gray-800 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.25)] active:scale-[0.98] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
               >
                 Make it personal
               </button>
-            ) : (
+            )}
+
+            {showNameInput && !nameConfirmed && (
+              <div className="animate-fade-in-up">
+                <RitualNamePad onComplete={handleNameComplete} />
+              </div>
+            )}
+
+            {nameConfirmed && (
               <div className="space-y-4 animate-fade-in-up">
-                <div>
-                  <label htmlFor="recipientName" className="sr-only">
-                    Recipient name
-                  </label>
-                  <input
-                    type="text"
-                    id="recipientName"
-                    placeholder="Enter their name"
-                    value={recipientName}
-                    onChange={(e) => setRecipientName(e.target.value)}
-                    className="w-full h-[52px] px-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-[15px] sm:text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent focus:bg-white transition-all duration-200"
-                    autoComplete="off"
-                    autoFocus
-                  />
+                {/* Name confirmation pill */}
+                <div className="flex items-center justify-center gap-2 py-3 px-4 bg-gray-50 rounded-xl border border-gray-100">
+                  <span className="text-[15px] text-gray-500">Creating blessing for</span>
+                  <span className="text-[17px] font-serif text-gray-900 tracking-wide">
+                    {recipientName}
+                  </span>
                 </div>
 
-                {recipientName.trim() && (
-                  <div className="space-y-4 animate-fade-in-up">
-                    <p className="text-center text-[14px] sm:text-[15px] text-gray-500 leading-relaxed">
-                      Your blessing will include their name.
-                    </p>
-                    <button
-                      disabled
-                      className="w-full h-[52px] bg-gray-100 text-gray-400 rounded-xl font-medium text-[15px] sm:text-base cursor-not-allowed"
-                    >
-                      Create my blessing
-                    </button>
-                  </div>
-                )}
+                <p className="text-center text-[14px] sm:text-[15px] text-gray-500 leading-relaxed">
+                  Your blessing will include their name.
+                </p>
+
+                <button
+                  disabled
+                  className="w-full h-[52px] bg-gray-200 text-gray-400 rounded-xl font-medium text-[15px] sm:text-base cursor-not-allowed"
+                >
+                  Create my blessing
+                </button>
               </div>
             )}
           </div>
