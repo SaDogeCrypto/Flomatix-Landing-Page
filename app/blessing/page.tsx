@@ -24,12 +24,17 @@ export default function BlessingPage() {
   const handleVideoPause = () => setIsPlaying(false)
 
   return (
-    <main className="min-h-screen bg-white flex flex-col">
-      {/* Main content - centered */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
-        <div className="w-full max-w-lg mx-auto">
+    <main className="min-h-screen min-h-dvh bg-gradient-to-b from-[#FAFAFA] to-[#F5F5F4] flex flex-col">
+      {/* Main content - centered with flex grow */}
+      <div className="flex-1 flex flex-col items-center justify-center px-5 py-10 sm:py-16">
+        {/* Card container */}
+        <div className="w-full max-w-[560px] mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-[0_2px_20px_-4px_rgba(0,0,0,0.06)] border border-black/[0.04] p-5 sm:p-8">
           {/* Video section */}
-          <div className="relative w-full aspect-video bg-gray-100 rounded-xl overflow-hidden mb-6 shadow-sm">
+          <div
+            className="relative w-full aspect-video bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_4px_24px_-6px_rgba(0,0,0,0.1)] ring-1 ring-black/[0.03]"
+            role="region"
+            aria-label="Blessing video"
+          >
             <video
               ref={videoRef}
               className="w-full h-full object-cover"
@@ -45,26 +50,28 @@ export default function BlessingPage() {
             {/* Play button overlay */}
             <button
               onClick={handlePlayClick}
-              className={`absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity ${
+              className={`absolute inset-0 flex items-center justify-center bg-black/10 transition-opacity duration-300 ${
                 isPlaying ? "opacity-0 hover:opacity-100" : "opacity-100"
               }`}
               aria-label={isPlaying ? "Pause video" : "Play video"}
             >
-              <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl ring-1 ring-black/[0.03] transition-transform duration-200 hover:scale-105 active:scale-95">
                 {isPlaying ? (
                   <svg
-                    className="w-6 h-6 text-gray-800"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800"
                     fill="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
-                    <rect x="6" y="4" width="4" height="16" />
-                    <rect x="14" y="4" width="4" height="16" />
+                    <rect x="6" y="4" width="4" height="16" rx="1" />
+                    <rect x="14" y="4" width="4" height="16" rx="1" />
                   </svg>
                 ) : (
                   <svg
-                    className="w-6 h-6 text-gray-800 ml-1"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800 ml-0.5"
                     fill="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -73,12 +80,12 @@ export default function BlessingPage() {
             </button>
           </div>
 
-          {/* Copy */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-2">
+          {/* Copy - increased spacing */}
+          <div className="text-center mt-7 sm:mt-9 mb-8 sm:mb-10">
+            <h1 className="text-[26px] sm:text-[32px] font-semibold text-gray-900 tracking-[-0.02em] leading-tight mb-3">
               A short blessing for you.
             </h1>
-            <p className="text-gray-600 text-lg">
+            <p className="text-[15px] sm:text-base text-gray-500 leading-relaxed">
               Someone shared this with you.
             </p>
           </div>
@@ -88,7 +95,7 @@ export default function BlessingPage() {
             {!showNameInput ? (
               <button
                 onClick={() => setShowNameInput(true)}
-                className="w-full py-3 px-6 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+                className="w-full h-[52px] bg-gray-900 text-white rounded-xl font-medium text-[15px] sm:text-base shadow-[0_2px_8px_-2px_rgba(0,0,0,0.2)] hover:bg-gray-800 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.25)] active:scale-[0.98] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
               >
                 Make it personal
               </button>
@@ -104,19 +111,20 @@ export default function BlessingPage() {
                     placeholder="Enter their name"
                     value={recipientName}
                     onChange={(e) => setRecipientName(e.target.value)}
-                    className="w-full py-3 px-4 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    className="w-full h-[52px] px-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-[15px] sm:text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent focus:bg-white transition-all duration-200"
                     autoComplete="off"
+                    autoFocus
                   />
                 </div>
 
                 {recipientName.trim() && (
-                  <div className="space-y-3 animate-fade-in-up">
-                    <p className="text-center text-gray-600">
+                  <div className="space-y-4 animate-fade-in-up">
+                    <p className="text-center text-[14px] sm:text-[15px] text-gray-500 leading-relaxed">
                       Your blessing will include their name.
                     </p>
                     <button
                       disabled
-                      className="w-full py-3 px-6 bg-gray-300 text-gray-500 rounded-lg font-medium cursor-not-allowed"
+                      className="w-full h-[52px] bg-gray-100 text-gray-400 rounded-xl font-medium text-[15px] sm:text-base cursor-not-allowed"
                     >
                       Create my blessing
                     </button>
@@ -128,14 +136,20 @@ export default function BlessingPage() {
         </div>
       </div>
 
-      {/* Minimal footer with legal links */}
-      <footer className="py-6 px-4 border-t border-gray-100">
-        <div className="max-w-lg mx-auto flex justify-center items-center gap-6 text-sm text-gray-500">
-          <Link href="/privacy" className="hover:text-gray-700 transition-colors">
+      {/* Minimal footer - breathing room from bottom */}
+      <footer className="py-6 pb-8 px-5">
+        <div className="flex justify-center items-center gap-4 text-[13px] text-gray-400">
+          <Link
+            href="/privacy"
+            className="hover:text-gray-600 hover:underline underline-offset-2 transition-colors"
+          >
             Privacy Policy
           </Link>
-          <span className="text-gray-300">|</span>
-          <Link href="/terms" className="hover:text-gray-700 transition-colors">
+          <span className="text-gray-300" aria-hidden="true">•</span>
+          <Link
+            href="/terms"
+            className="hover:text-gray-600 hover:underline underline-offset-2 transition-colors"
+          >
             Terms of Service
           </Link>
         </div>
