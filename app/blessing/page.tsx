@@ -79,7 +79,7 @@ export default function BlessingPage() {
               A short blessing for you.
             </h1>
             <p className="text-gray-600 text-lg">
-              Someone wanted you to receive this.
+              Someone shared this with you.
             </p>
           </div>
 
