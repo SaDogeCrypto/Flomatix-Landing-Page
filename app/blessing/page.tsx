@@ -6,25 +6,21 @@ import Link from "next/link"
 export default function BlessingPage() {
   const [showNameInput, setShowNameInput] = useState(false)
   const [recipientName, setRecipientName] = useState("")
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [audioUnlocked, setAudioUnlocked] = useState(false)
   const [keyboardOpen, setKeyboardOpen] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  const handlePlayClick = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
+  const handleTapToListen = () => {
+    if (videoRef.current && !audioUnlocked) {
+      // Unmute, restart from beginning, and play
+      videoRef.current.muted = false
+      videoRef.current.currentTime = 0
+      videoRef.current.play()
+      setAudioUnlocked(true)
     }
   }
-
-  const handleVideoPlay = () => setIsPlaying(true)
-  const handleVideoPause = () => setIsPlaying(false)
 
   const handleMakePersonal = () => {
     // Focus input FIRST (synchronously) to satisfy iOS gesture requirement
@@ -73,41 +69,39 @@ export default function BlessingPage() {
                 muted
                 playsInline
                 loop
-                onPlay={handleVideoPlay}
-                onPause={handleVideoPause}
                 poster="/assets/blessing-poster.jpg"
               />
-              {/* Play button overlay */}
-              <button
-                onClick={handlePlayClick}
-                className={`absolute inset-0 flex items-center justify-center bg-black/10 transition-opacity duration-300 ${
-                  isPlaying ? "opacity-0 hover:opacity-100" : "opacity-100"
-                }`}
-                aria-label={isPlaying ? "Pause video" : "Play video"}
-              >
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl ring-1 ring-black/[0.03] transition-transform duration-200 hover:scale-105 active:scale-95">
-                  {isPlaying ? (
+
+              {/* Tap to listen overlay - shown until audio is unlocked */}
+              {!audioUnlocked && (
+                <button
+                  onClick={handleTapToListen}
+                  className="absolute inset-0 flex items-center justify-center bg-black/5 transition-opacity duration-300 cursor-pointer"
+                  aria-label="Tap to listen with sound"
+                >
+                  {/* Subtle hint at bottom */}
+                  <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 flex items-center gap-2 px-3 py-2 bg-black/40 backdrop-blur-sm rounded-full">
+                    {/* Speaker icon */}
                     <svg
-                      className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800"
-                      fill="currentColor"
+                      className="w-4 h-4 text-white/90"
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <rect x="6" y="4" width="4" height="16" rx="1" />
-                      <rect x="14" y="4" width="4" height="16" rx="1" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      />
                     </svg>
-                  ) : (
-                    <svg
-                      className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800 ml-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  )}
-                </div>
-              </button>
+                    <span className="text-[13px] text-white/90 font-medium">
+                      Tap to listen
+                    </span>
+                  </div>
+                </button>
+              )}
             </div>
 
             {/* Copy - increased spacing */}
