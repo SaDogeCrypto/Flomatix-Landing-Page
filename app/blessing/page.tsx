@@ -27,11 +27,10 @@ export default function BlessingPage() {
   const handleVideoPause = () => setIsPlaying(false)
 
   const handleMakePersonal = () => {
+    // Focus input FIRST (synchronously) to satisfy iOS gesture requirement
+    inputRef.current?.focus()
+    // Then reveal the UI
     setShowNameInput(true)
-    // Focus input after state update and animation
-    setTimeout(() => {
-      inputRef.current?.focus()
-    }, 100)
   }
 
   const handleInputFocus = () => {
@@ -123,6 +122,28 @@ export default function BlessingPage() {
 
             {/* CTA section */}
             <div className="space-y-4">
+              {/* Hidden input - always in DOM so we can focus synchronously on iOS */}
+              <input
+                ref={inputRef}
+                type="text"
+                id="recipientName"
+                name="recipientName"
+                placeholder="Enter their name"
+                value={recipientName}
+                onChange={(e) => setRecipientName(e.target.value)}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+                autoComplete="name"
+                autoCapitalize="words"
+                spellCheck={false}
+                maxLength={32}
+                aria-label="Recipient name"
+                className={`w-full h-[52px] px-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-[16px] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent focus:bg-white transition-all duration-200 ${
+                  showNameInput ? "" : "sr-only"
+                }`}
+                tabIndex={showNameInput ? 0 : -1}
+              />
+
               {!showNameInput ? (
                 <button
                   onClick={handleMakePersonal}
@@ -132,29 +153,6 @@ export default function BlessingPage() {
                 </button>
               ) : (
                 <div className="space-y-4 animate-fade-in-up">
-                  {/* Name input */}
-                  <div>
-                    <label htmlFor="recipientName" className="sr-only">
-                      Recipient name
-                    </label>
-                    <input
-                      ref={inputRef}
-                      type="text"
-                      id="recipientName"
-                      name="recipientName"
-                      placeholder="Enter their name"
-                      value={recipientName}
-                      onChange={(e) => setRecipientName(e.target.value)}
-                      onFocus={handleInputFocus}
-                      onBlur={handleInputBlur}
-                      autoComplete="name"
-                      autoCapitalize="words"
-                      spellCheck={false}
-                      maxLength={32}
-                      className="w-full h-[52px] px-4 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-[16px] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent focus:bg-white transition-all duration-200"
-                    />
-                  </div>
-
                   {/* Continue button - sticky on keyboard open */}
                   <div
                     className={`transition-all duration-200 ${
