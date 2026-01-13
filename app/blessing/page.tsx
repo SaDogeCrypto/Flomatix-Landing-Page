@@ -144,37 +144,22 @@ export default function BlessingPage() {
                 tabIndex={showNameInput ? 0 : -1}
               />
 
-              {!showNameInput ? (
-                <button
-                  onClick={handleMakePersonal}
-                  className="w-full h-[52px] bg-gray-900 text-white rounded-xl font-medium text-[15px] sm:text-base shadow-[0_2px_8px_-2px_rgba(0,0,0,0.2)] hover:bg-gray-800 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.25)] active:scale-[0.98] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
-                >
-                  Make it personal
-                </button>
-              ) : (
-                <div className="space-y-4 animate-fade-in-up">
-                  {/* Continue button - sticky on keyboard open */}
-                  <div
-                    className={`transition-all duration-200 ${
-                      keyboardOpen
-                        ? "sticky bottom-0 pt-2 pb-[env(safe-area-inset-bottom)] bg-white -mx-5 sm:-mx-8 px-5 sm:px-8 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.1)]"
-                        : ""
-                    }`}
-                  >
-                    {recipientName.trim() && (
-                      <p className="text-center text-[14px] sm:text-[15px] text-gray-500 leading-relaxed mb-3">
-                        Your blessing will include their name.
-                      </p>
-                    )}
-                    <button
-                      disabled={!isValidName}
-                      className="w-full h-[52px] bg-gray-900 text-white rounded-xl font-medium text-[15px] sm:text-base shadow-[0_2px_8px_-2px_rgba(0,0,0,0.2)] hover:bg-gray-800 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.25)] active:scale-[0.98] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none disabled:cursor-not-allowed disabled:active:scale-100"
-                    >
-                      {isValidName ? "Continue" : "Enter a name to continue"}
-                    </button>
-                  </div>
-                </div>
-              )}
+              {/* Primary action button - always in same position */}
+              <button
+                onClick={!showNameInput ? handleMakePersonal : undefined}
+                disabled={showNameInput && !isValidName}
+                className={`w-full h-[52px] rounded-xl font-medium text-[15px] sm:text-base transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 ${
+                  showNameInput && !isValidName
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-gray-900 text-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.2)] hover:bg-gray-800 hover:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.25)] active:scale-[0.98]"
+                }`}
+              >
+                {!showNameInput
+                  ? "Make it personal"
+                  : isValidName
+                  ? "Continue"
+                  : "Enter a name"}
+              </button>
             </div>
           </div>
         </div>
