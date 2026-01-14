@@ -99,10 +99,10 @@ export default function BlessingPage() {
             {/* Copy - directly below video */}
             <div className="text-center mt-4 mb-4">
               <h1 className="text-[20px] sm:text-[22px] font-semibold text-gray-900 tracking-[-0.01em] leading-tight mb-1.5">
-                A short blessing for you.
+                Send a tiny moment of calm
               </h1>
               <p className="text-[14px] text-gray-500">
-                Someone shared this with you.
+                Lume will create a gentle 8-second message for someone you care about
               </p>
             </div>
 
@@ -114,7 +114,7 @@ export default function BlessingPage() {
                 type="text"
                 id="recipientName"
                 name="recipientName"
-                placeholder="Enter their name"
+                placeholder="Who should Lume speak to?"
                 value={recipientName}
                 onChange={(e) => setRecipientName(e.target.value)}
                 onFocus={handleInputFocus}
@@ -140,11 +140,7 @@ export default function BlessingPage() {
                     : "bg-gray-900 text-white shadow-sm hover:bg-gray-800 active:scale-[0.98]"
                 }`}
               >
-                {!showNameInput
-                  ? "Make it personal"
-                  : isValidName
-                  ? "Continue"
-                  : "Enter a name"}
+                {showNameInput ? "Continue" : "Make it personal"}
               </button>
             </div>
           </div>
