@@ -140,7 +140,7 @@ export default function BlessingPage() {
                     : "bg-gray-900 text-white shadow-sm hover:bg-gray-800 active:scale-[0.98]"
                 }`}
               >
-                {showNameInput ? "Continue" : "Make it personal"}
+                {showNameInput ? "Continue" : "Begin"}
               </button>
             </div>
           </div>
