@@ -58,7 +58,7 @@ export default function BlessingPage() {
               <video
                 ref={videoRef}
                 className="w-full h-full object-cover"
-                src="/assets/sample-blessing.mp4"
+                src="/assets/sample-blessing.mp4?v=2"
                 autoPlay
                 muted
                 playsInline
