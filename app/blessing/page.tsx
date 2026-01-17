@@ -112,11 +112,11 @@ export default function BlessingPage() {
 
             {/* Copy - directly below video */}
             <div className="text-center mt-4 mb-4">
-              <h1 className="text-[20px] sm:text-[22px] font-semibold text-gray-900 tracking-[-0.01em] leading-tight mb-1.5">
-                Send a tiny moment of calm
+              <h1 className="text-[20px] sm:text-[22px] font-semibold text-gray-900 tracking-[-0.01em] leading-tight mb-2">
+                Create a short, spoken message — just for them
               </h1>
-              <p className="text-[14px] text-gray-500">
-                Lume will create a gentle 8-second message for someone you care about
+              <p className="text-[14px] text-gray-500 leading-relaxed">
+                Lume creates an 8-second video message, personalized with a name and intention, that you can send to someone who needs it.
               </p>
             </div>
 
@@ -160,8 +160,15 @@ export default function BlessingPage() {
                     : "bg-gray-900 text-white shadow-sm hover:bg-gray-800 active:scale-[0.98]"
                 }`}
               >
-                {showNameInput ? "Continue" : "Begin"}
+                {showNameInput ? "Continue" : "Create a personal message"}
               </button>
+
+              {/* Micro-copy */}
+              {!showNameInput && (
+                <p className="text-center text-[12px] text-gray-400">
+                  Takes about 10 seconds
+                </p>
+              )}
             </div>
           </div>
         </div>
