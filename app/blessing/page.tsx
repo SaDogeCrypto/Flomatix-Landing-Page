@@ -113,7 +113,7 @@ export default function BlessingPage() {
               <video
                 ref={videoRef}
                 className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                src="https://blessingappvideos.blob.core.windows.net/videos/lume_alex_example.mp4"
+                src="https://blessingappvideos.blob.core.windows.net/videos/lume_alex_custom.mp4"
                 autoPlay
                 muted
                 playsInline
