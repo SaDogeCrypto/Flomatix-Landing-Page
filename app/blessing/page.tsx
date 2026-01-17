@@ -131,7 +131,7 @@ export default function BlessingPage() {
               {!audioUnlocked && videoLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-900 shadow-lg">
-                    Tap to listen
+                    Tap to hear an example
                   </div>
                 </div>
               )}
@@ -146,7 +146,7 @@ export default function BlessingPage() {
                 Create a short, spoken message — just for them
               </h1>
               <p className="text-[14px] text-gray-500 leading-relaxed">
-                Lume creates an 8-second video message, personalized with a name and intention, that you can send to someone who needs it.
+                Lume creates an 8-second spoken video, personalized with a name and intention — ready to send to someone who needs it.
               </p>
             </div>
 
