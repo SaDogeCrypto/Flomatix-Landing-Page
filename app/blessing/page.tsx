@@ -99,7 +99,7 @@ export default function BlessingPage() {
       >
         <div className="flex flex-col items-center px-4 pt-3 pb-4 sm:pt-6 sm:pb-6">
           {/* Video container - 9:16 portrait, no wrapper card */}
-          <div className="w-full max-w-[260px] sm:max-w-[320px]">
+          <div className="w-full max-w-[220px] sm:max-w-[280px]">
             <div
               className="relative w-full rounded-2xl overflow-hidden shadow-lg bg-cover bg-center cursor-pointer"
               style={{
