@@ -32,6 +32,8 @@ jobs:
 
       - name: Build site
         run: pnpm build
+        env:
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
 
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
