@@ -122,8 +122,8 @@ export default function BlessingPage() {
                 onCanPlay={() => setVideoLoaded(true)}
               />
               {/* Value banner - always visible on video */}
-              <div className="absolute top-0 left-0 right-0 p-3 bg-gradient-to-b from-black/60 to-transparent">
-                <p className="text-white text-center text-[13px] font-medium leading-tight drop-shadow-md">
+              <div className="absolute bottom-[33%] left-0 right-0 px-3">
+                <p className="text-white text-center text-[13px] font-medium leading-tight drop-shadow-lg" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>
                   A short spoken message — made just for them
                 </p>
               </div>
