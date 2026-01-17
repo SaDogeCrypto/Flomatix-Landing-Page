@@ -113,7 +113,7 @@ export default function BlessingPage() {
               <video
                 ref={videoRef}
                 className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                src="https://blessingappvideos.blob.core.windows.net/videos/lume_validation_voiceover.mp4"
+                src="https://blessingappvideos.blob.core.windows.net/videos/lume_alex_example.mp4"
                 autoPlay
                 muted
                 playsInline
@@ -190,14 +190,19 @@ export default function BlessingPage() {
                     : "bg-gray-900 text-white shadow-sm hover:bg-gray-800 active:scale-[0.98]"
                 }`}
               >
-                {showNameInput ? "Continue" : "Create a personal message"}
+                {showNameInput ? "Continue" : "Personalize this message"}
               </button>
 
               {/* Micro-copy */}
               {!showNameInput && (
-                <p className="text-center text-[12px] text-gray-400">
-                  Takes about 10 seconds
-                </p>
+                <div className="text-center space-y-1">
+                  <p className="text-[12px] text-gray-400">
+                    Takes about 10 seconds
+                  </p>
+                  <p className="text-[11px] text-gray-400">
+                    You'll enter a name next. Nothing is sent yet.
+                  </p>
+                </div>
               )}
             </div>
           </div>
