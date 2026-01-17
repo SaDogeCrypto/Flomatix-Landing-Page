@@ -138,8 +138,9 @@ export default function BlessingPage() {
               {/* Tap to listen overlay */}
               {!audioUnlocked && videoLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-900 shadow-lg">
-                    Tap to hear a message for Alex
+                  <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-2xl text-sm font-medium text-gray-900 shadow-lg text-center">
+                    Tap to hear a message<br />
+                    <span className="text-gray-600">for Alex</span>
                   </div>
                 </div>
               )}
@@ -151,10 +152,10 @@ export default function BlessingPage() {
             {/* Copy - directly below video */}
             <div className="text-center mt-4 mb-4">
               <h1 className="text-[20px] sm:text-[22px] font-semibold text-gray-900 tracking-[-0.01em] leading-tight mb-2">
-                Create a short, spoken message — just for them
+                Send a short, spoken message — just for them
               </h1>
               <p className="text-[14px] text-gray-500 leading-relaxed">
-                Lume creates an 8-second spoken video, personalized with a name and intention — ready to send to someone who needs it.
+                Lume creates an 8-second spoken video, personalized with a name — ready to send to someone who needs it.
               </p>
             </div>
 
@@ -166,7 +167,7 @@ export default function BlessingPage() {
                 type="text"
                 id="recipientName"
                 name="recipientName"
-                placeholder="Who is this for?"
+                placeholder="Who should this be for?"
                 value={recipientName}
                 onChange={(e) => setRecipientName(e.target.value)}
                 onFocus={handleInputFocus}
