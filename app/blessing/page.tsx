@@ -117,9 +117,17 @@ export default function BlessingPage() {
                 autoPlay
                 muted
                 playsInline
-                loop
                 poster="https://blessingappvideos.blob.core.windows.net/videos/lume_idle_poster.jpg"
                 onCanPlay={() => setVideoLoaded(true)}
+                onEnded={() => {
+                  // Soft loop: wait 1.5 seconds before replaying
+                  setTimeout(() => {
+                    if (videoRef.current) {
+                      videoRef.current.currentTime = 0
+                      videoRef.current.play()
+                    }
+                  }, 1500)
+                }}
               />
               {/* Value banner - always visible on video */}
               <div className="absolute bottom-[33%] left-0 right-0 px-3">
@@ -131,7 +139,7 @@ export default function BlessingPage() {
               {!audioUnlocked && videoLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-900 shadow-lg">
-                    Tap to hear an example
+                    Tap to hear a message for Alex
                   </div>
                 </div>
               )}
@@ -158,7 +166,7 @@ export default function BlessingPage() {
                 type="text"
                 id="recipientName"
                 name="recipientName"
-                placeholder="Who should Lume speak to?"
+                placeholder="Who is this for?"
                 value={recipientName}
                 onChange={(e) => setRecipientName(e.target.value)}
                 onFocus={handleInputFocus}
@@ -190,11 +198,15 @@ export default function BlessingPage() {
                     : "bg-gray-900 text-white shadow-sm hover:bg-gray-800 active:scale-[0.98]"
                 }`}
               >
-                {showNameInput ? "Continue" : "Personalize this message"}
+                {showNameInput ? "Preview their message" : "Personalize this message"}
               </button>
 
               {/* Micro-copy */}
-              {!showNameInput && (
+              {showNameInput ? (
+                <p className="text-center text-[11px] text-gray-400">
+                  Nothing is sent yet.
+                </p>
+              ) : (
                 <div className="text-center space-y-1">
                   <p className="text-[12px] text-gray-400">
                     Takes about 10 seconds
