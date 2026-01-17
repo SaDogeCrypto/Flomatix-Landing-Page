@@ -35,6 +35,27 @@ export default function BlessingPage() {
     }
   }, [])
 
+  // Try to autoplay with low volume after 500ms
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || audioUnlocked) return
+
+    const timer = setTimeout(() => {
+      video.volume = 0.25
+      video.muted = false
+      video.play().then(() => {
+        setAudioUnlocked(true)
+        BlessingEvents.tapToListen()
+      }).catch(() => {
+        // Autoplay with audio blocked - keep muted
+        video.muted = true
+        video.volume = 1
+      })
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [videoLoaded, audioUnlocked])
+
   const handleTapToListen = () => {
     if (videoRef.current && !audioUnlocked) {
       videoRef.current.muted = false
@@ -100,9 +121,15 @@ export default function BlessingPage() {
                 poster="https://blessingappvideos.blob.core.windows.net/videos/lume_idle_poster.jpg"
                 onCanPlay={() => setVideoLoaded(true)}
               />
+              {/* Value banner - always visible on video */}
+              <div className="absolute top-0 left-0 right-0 p-3 bg-gradient-to-b from-black/60 to-transparent">
+                <p className="text-white text-center text-[13px] font-medium leading-tight drop-shadow-md">
+                  A short spoken message — made just for them
+                </p>
+              </div>
               {/* Tap to listen overlay */}
               {!audioUnlocked && videoLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-900 shadow-lg">
                     Tap to listen
                   </div>
