@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
+import { BlessingEvents } from "@/components/analytics"
 
 export default function BlessingPage() {
   const [showNameInput, setShowNameInput] = useState(false)
@@ -11,22 +12,47 @@ export default function BlessingPage() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  // Track page view on mount
+  useEffect(() => {
+    BlessingEvents.pageView()
+  }, [])
+
+  // Track video events
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const handlePlay = () => BlessingEvents.videoPlayed()
+    const handleEnded = () => BlessingEvents.videoEnded()
+
+    video.addEventListener("play", handlePlay)
+    video.addEventListener("ended", handleEnded)
+
+    return () => {
+      video.removeEventListener("play", handlePlay)
+      video.removeEventListener("ended", handleEnded)
+    }
+  }, [])
+
   const handleTapToListen = () => {
     if (videoRef.current && !audioUnlocked) {
       videoRef.current.muted = false
       videoRef.current.currentTime = 0
       videoRef.current.play()
       setAudioUnlocked(true)
+      BlessingEvents.tapToListen()
     }
   }
 
   const handleMakePersonal = () => {
     inputRef.current?.focus()
     setShowNameInput(true)
+    BlessingEvents.beginClicked()
   }
 
   const handleInputFocus = () => {
     setKeyboardOpen(true)
+    BlessingEvents.nameInputFocused()
     setTimeout(() => {
       inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
     }, 150)
@@ -34,6 +60,9 @@ export default function BlessingPage() {
 
   const handleInputBlur = () => {
     setKeyboardOpen(false)
+    if (recipientName.trim().length > 0) {
+      BlessingEvents.nameEntered(recipientName.trim().length)
+    }
   }
 
   const isValidName = recipientName.trim().length >= 2
@@ -132,7 +161,13 @@ export default function BlessingPage() {
 
               {/* Primary button */}
               <button
-                onClick={!showNameInput ? handleMakePersonal : undefined}
+                onClick={
+                  !showNameInput
+                    ? handleMakePersonal
+                    : isValidName
+                      ? () => BlessingEvents.continueClicked(recipientName.trim())
+                      : undefined
+                }
                 disabled={showNameInput && !isValidName}
                 className={`w-full h-[46px] rounded-xl font-medium text-[15px] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 ${
                   showNameInput && !isValidName
