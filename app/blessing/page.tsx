@@ -136,7 +136,10 @@ export default function BlessingPage() {
                 </div>
               )}
             </div>
+          </div>
 
+          {/* Copy and CTA - wider than video */}
+          <div className="w-full max-w-[280px] sm:max-w-[340px]">
             {/* Copy - directly below video */}
             <div className="text-center mt-4 mb-4">
               <h1 className="text-[20px] sm:text-[22px] font-semibold text-gray-900 tracking-[-0.01em] leading-tight mb-2">
