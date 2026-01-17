@@ -7,8 +7,9 @@ import { BlessingEvents } from "@/components/analytics"
 export default function BlessingPage() {
   const [showNameInput, setShowNameInput] = useState(false)
   const [recipientName, setRecipientName] = useState("")
-  const [audioUnlocked, setAudioUnlocked] = useState(false)
   const [keyboardOpen, setKeyboardOpen] = useState(false)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [audioUnlocked, setAudioUnlocked] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -77,51 +78,35 @@ export default function BlessingPage() {
       >
         <div className="flex flex-col items-center px-4 pt-3 pb-4 sm:pt-6 sm:pb-6">
           {/* Video container - 9:16 portrait, no wrapper card */}
-          <div className="w-full max-w-[320px] sm:max-w-[360px]">
+          <div className="w-full max-w-[260px] sm:max-w-[320px]">
             <div
-              className="relative w-full rounded-2xl overflow-hidden shadow-lg"
-              style={{ aspectRatio: "9/16" }}
+              className="relative w-full rounded-2xl overflow-hidden shadow-lg bg-cover bg-center cursor-pointer"
+              style={{
+                aspectRatio: "9/16",
+                backgroundImage: "url('https://blessingappvideos.blob.core.windows.net/videos/lume_idle_poster.jpg')"
+              }}
               role="region"
               aria-label="Blessing video"
+              onClick={handleTapToListen}
             >
               <video
                 ref={videoRef}
-                className="w-full h-full object-cover"
-                src="/assets/sample-blessing.mp4?v=3"
+                className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                src="https://blessingappvideos.blob.core.windows.net/videos/lume_validation_voiceover.mp4"
                 autoPlay
                 muted
                 playsInline
                 loop
-                poster="/assets/blessing-poster.jpg"
+                poster="https://blessingappvideos.blob.core.windows.net/videos/lume_idle_poster.jpg"
+                onCanPlay={() => setVideoLoaded(true)}
               />
-
-              {/* Tap to listen overlay - top right corner */}
-              {!audioUnlocked && (
-                <button
-                  onClick={handleTapToListen}
-                  className="absolute inset-0 cursor-pointer"
-                  aria-label="Tap to listen with sound"
-                >
-                  <div className="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1.5 bg-black/40 backdrop-blur-sm rounded-full">
-                    <svg
-                      className="w-3.5 h-3.5 text-white/90"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                      />
-                    </svg>
-                    <span className="text-[12px] text-white/90 font-medium">
-                      Tap to listen
-                    </span>
+              {/* Tap to listen overlay */}
+              {!audioUnlocked && videoLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                  <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-900 shadow-lg">
+                    Tap to listen
                   </div>
-                </button>
+                </div>
               )}
             </div>
 
