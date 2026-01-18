@@ -4,14 +4,120 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 
 export default function BearPage() {
   const [eyesClosed, setEyesClosed] = useState(false);
-  const [isTouching, setIsTouching] = useState(false);
+  const [scale, setScale] = useState(1);
   const [lean, setLean] = useState({ x: 0, y: 0 });
   const [blushOpacity, setBlushOpacity] = useState(0.3);
   const bearRef = useRef<HTMLDivElement>(null);
+  const breatheRef = useRef<number | null>(null);
+  const isTouchingRef = useRef(false);
+
+  // Breathing animation
+  const startBreathing = useCallback((touched = false) => {
+    const duration = touched ? 6000 : 4000;
+    const maxScale = touched ? 1.025 : 1.06;
+    const startTime = performance.now();
+    const startScale = scale;
+
+    const animate = (time: number) => {
+      const elapsed = time - startTime;
+      const progress = (elapsed % duration) / duration;
+      // Sine wave for smooth breathing
+      const breathProgress = Math.sin(progress * Math.PI * 2 - Math.PI / 2) * 0.5 + 0.5;
+      const newScale = 1 + (maxScale - 1) * breathProgress;
+      setScale(newScale);
+      breatheRef.current = requestAnimationFrame(animate);
+    };
+
+    if (breatheRef.current) {
+      cancelAnimationFrame(breatheRef.current);
+    }
+    breatheRef.current = requestAnimationFrame(animate);
+  }, []);
+
+  // Start breathing on mount
+  useEffect(() => {
+    startBreathing(false);
+    return () => {
+      if (breatheRef.current) {
+        cancelAnimationFrame(breatheRef.current);
+      }
+    };
+  }, []);
+
+  // Animate lean back to center
+  const animateLeanReturn = useCallback(() => {
+    const startLean = { ...lean };
+    const startBlush = blushOpacity;
+    const startTime = performance.now();
+    const duration = 2000;
+
+    const animate = (time: number) => {
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease in-out quad
+      const eased = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+      setLean({
+        x: startLean.x * (1 - eased),
+        y: startLean.y * (1 - eased),
+      });
+
+      // Blush fades over 2500ms
+      const blushProgress = Math.min(elapsed / 2500, 1);
+      const blushEased = blushProgress < 0.5
+        ? 2 * blushProgress * blushProgress
+        : 1 - Math.pow(-2 * blushProgress + 2, 2) / 2;
+      setBlushOpacity(0.55 - (0.55 - 0.3) * blushEased);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [lean, blushOpacity]);
+
+  // Animate lean toward touch
+  const animateLeanTo = useCallback((targetX: number, targetY: number) => {
+    const startLean = { ...lean };
+    const startBlush = blushOpacity;
+    const startTime = performance.now();
+    const duration = 800;
+
+    const animate = (time: number) => {
+      if (!isTouchingRef.current) return;
+
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out quad
+      const eased = 1 - (1 - progress) * (1 - progress);
+
+      setLean({
+        x: startLean.x + (targetX - startLean.x) * eased,
+        y: startLean.y + (targetY - startLean.y) * eased,
+      });
+
+      // Blush increases over 1200ms
+      const blushProgress = Math.min(elapsed / 1200, 1);
+      const blushEased = 1 - (1 - blushProgress) * (1 - blushProgress);
+      setBlushOpacity(0.3 + (0.55 - 0.3) * blushEased);
+
+      if (progress < 1 && isTouchingRef.current) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [lean, blushOpacity]);
 
   const handleTouchStart = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
-    setIsTouching(true);
+    isTouchingRef.current = true;
+
+    // Switch to slower breathing
+    startBreathing(true);
 
     const rect = bearRef.current?.getBoundingClientRect();
     if (!rect) return;
@@ -25,26 +131,33 @@ export default function BearPage() {
     const deltaX = ((clientX - centerX) / rect.width) * 8;
     const deltaY = ((clientY - centerY) / rect.height) * 5;
 
-    setLean({ x: deltaX, y: deltaY });
-    setBlushOpacity(0.55);
+    animateLeanTo(deltaX, deltaY);
 
     // Close eyes after tiny delay
-    setTimeout(() => setEyesClosed(true), 150);
+    setTimeout(() => {
+      if (isTouchingRef.current) setEyesClosed(true);
+    }, 150);
 
     // Haptic feedback if supported
     if (navigator.vibrate) {
       navigator.vibrate(10);
     }
-  }, []);
+  }, [startBreathing, animateLeanTo]);
 
   const handleTouchEnd = useCallback(() => {
-    setIsTouching(false);
-    setLean({ x: 0, y: 0 });
-    setBlushOpacity(0.3);
+    isTouchingRef.current = false;
+
+    // Gradual return
+    animateLeanReturn();
 
     // Open eyes after delay
     setTimeout(() => setEyesClosed(false), 500);
-  }, []);
+
+    // Resume normal breathing after settling
+    setTimeout(() => {
+      startBreathing(false);
+    }, 1500);
+  }, [animateLeanReturn, startBreathing]);
 
   return (
     <div
@@ -55,9 +168,9 @@ export default function BearPage() {
     >
       <div
         ref={bearRef}
-        className={`bear ${isTouching ? 'touching' : ''}`}
+        className="bear"
         style={{
-          transform: `rotate(${lean.x}deg) translateY(${lean.y}px)`,
+          transform: `scale(${scale}) rotate(${lean.x}deg) translateY(${lean.y}px)`,
         }}
         onMouseDown={handleTouchStart}
         onTouchStart={handleTouchStart}
@@ -122,14 +235,14 @@ export default function BearPage() {
             cy="110"
             r="14"
             fill="#f8b4b4"
-            style={{ opacity: blushOpacity, transition: 'opacity 1.2s ease-out' }}
+            opacity={blushOpacity}
           />
           <circle
             cx="145"
             cy="110"
             r="14"
             fill="#f8b4b4"
-            style={{ opacity: blushOpacity, transition: 'opacity 1.2s ease-out' }}
+            opacity={blushOpacity}
           />
         </svg>
       </div>
@@ -152,32 +265,8 @@ export default function BearPage() {
           width: min(70vw, 70vh, 300px);
           height: min(70vw, 70vh, 300px);
           cursor: pointer;
-          transition: transform 0.8s cubic-bezier(0.34, 1.2, 0.64, 1);
-          animation: breathe 4s ease-in-out infinite;
           filter: drop-shadow(0 8px 16px rgba(139, 90, 43, 0.15));
-        }
-
-        .bear.touching {
-          animation: breathe-slow 6s ease-in-out infinite;
-          transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        @keyframes breathe {
-          0%, 100% {
-            transform: scale(1) rotate(0deg) translateY(0px);
-          }
-          50% {
-            transform: scale(1.06) rotate(0deg) translateY(0px);
-          }
-        }
-
-        @keyframes breathe-slow {
-          0%, 100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.025);
-          }
+          will-change: transform;
         }
 
         .bear-svg {
