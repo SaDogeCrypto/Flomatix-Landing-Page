@@ -53,3 +53,14 @@ export const BlessingEvents = {
   videoPlayed: () => trackEvent("video_played"),
   videoEnded: () => trackEvent("video_ended"),
 }
+
+// Pre-defined events for the bear page
+export const BearEvents = {
+  pageLoaded: () => trackEvent("bear_page_loaded"),
+  bearTouched: () => trackEvent("bear_touched"),
+  touchStart: () => trackEvent("bear_touch_start"),
+  touchEnd: (durationMs: number) =>
+    trackEvent("bear_touch_end", { touch_duration_ms: durationMs }),
+  sessionEnd: (totalDurationMs: number) =>
+    trackEvent("bear_session_end", { total_session_duration_ms: totalDurationMs }),
+}

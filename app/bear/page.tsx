@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect } from 'react';
+import { BearEvents } from '@/components/analytics';
 
 export default function BearPage() {
   const [eyesClosed, setEyesClosed] = useState(false);
@@ -10,18 +11,37 @@ export default function BearPage() {
   const bearRef = useRef<HTMLDivElement>(null);
   const breatheRef = useRef<number | null>(null);
   const isTouchingRef = useRef(false);
+  const touchStartTimeRef = useRef<number>(0);
+  const sessionStartTimeRef = useRef<number>(0);
+  const touchCountRef = useRef(0);
+
+  // Track page load and session
+  useEffect(() => {
+    sessionStartTimeRef.current = Date.now();
+    BearEvents.pageLoaded();
+
+    // Track session end on page unload
+    const handleUnload = () => {
+      const sessionDuration = Date.now() - sessionStartTimeRef.current;
+      BearEvents.sessionEnd(sessionDuration);
+    };
+
+    window.addEventListener('beforeunload', handleUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+      handleUnload();
+    };
+  }, []);
 
   // Breathing animation
   const startBreathing = useCallback((touched = false) => {
     const duration = touched ? 6000 : 4000;
     const maxScale = touched ? 1.025 : 1.06;
     const startTime = performance.now();
-    const startScale = scale;
 
     const animate = (time: number) => {
       const elapsed = time - startTime;
       const progress = (elapsed % duration) / duration;
-      // Sine wave for smooth breathing
       const breathProgress = Math.sin(progress * Math.PI * 2 - Math.PI / 2) * 0.5 + 0.5;
       const newScale = 1 + (maxScale - 1) * breathProgress;
       setScale(newScale);
@@ -54,7 +74,6 @@ export default function BearPage() {
     const animate = (time: number) => {
       const elapsed = time - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease in-out quad
       const eased = progress < 0.5
         ? 2 * progress * progress
         : 1 - Math.pow(-2 * progress + 2, 2) / 2;
@@ -64,7 +83,6 @@ export default function BearPage() {
         y: startLean.y * (1 - eased),
       });
 
-      // Blush fades over 2500ms
       const blushProgress = Math.min(elapsed / 2500, 1);
       const blushEased = blushProgress < 0.5
         ? 2 * blushProgress * blushProgress
@@ -82,7 +100,6 @@ export default function BearPage() {
   // Animate lean toward touch
   const animateLeanTo = useCallback((targetX: number, targetY: number) => {
     const startLean = { ...lean };
-    const startBlush = blushOpacity;
     const startTime = performance.now();
     const duration = 800;
 
@@ -91,7 +108,6 @@ export default function BearPage() {
 
       const elapsed = time - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out quad
       const eased = 1 - (1 - progress) * (1 - progress);
 
       setLean({
@@ -99,7 +115,6 @@ export default function BearPage() {
         y: startLean.y + (targetY - startLean.y) * eased,
       });
 
-      // Blush increases over 1200ms
       const blushProgress = Math.min(elapsed / 1200, 1);
       const blushEased = 1 - (1 - blushProgress) * (1 - blushProgress);
       setBlushOpacity(0.3 + (0.55 - 0.3) * blushEased);
@@ -110,13 +125,20 @@ export default function BearPage() {
     };
 
     requestAnimationFrame(animate);
-  }, [lean, blushOpacity]);
+  }, [lean]);
 
   const handleTouchStart = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     isTouchingRef.current = true;
+    touchStartTimeRef.current = Date.now();
+    touchCountRef.current += 1;
 
-    // Switch to slower breathing
+    // Track analytics
+    BearEvents.touchStart();
+    if (touchCountRef.current === 1) {
+      BearEvents.bearTouched(); // First touch event
+    }
+
     startBreathing(true);
 
     const rect = bearRef.current?.getBoundingClientRect();
@@ -133,27 +155,28 @@ export default function BearPage() {
 
     animateLeanTo(deltaX, deltaY);
 
-    // Close eyes after tiny delay
     setTimeout(() => {
       if (isTouchingRef.current) setEyesClosed(true);
     }, 150);
 
-    // Haptic feedback if supported
     if (navigator.vibrate) {
       navigator.vibrate(10);
     }
   }, [startBreathing, animateLeanTo]);
 
   const handleTouchEnd = useCallback(() => {
+    if (!isTouchingRef.current) return;
+
     isTouchingRef.current = false;
 
-    // Gradual return
+    // Track touch duration
+    const touchDuration = Date.now() - touchStartTimeRef.current;
+    BearEvents.touchEnd(touchDuration);
+
     animateLeanReturn();
 
-    // Open eyes after delay
     setTimeout(() => setEyesClosed(false), 500);
 
-    // Resume normal breathing after settling
     setTimeout(() => {
       startBreathing(false);
     }, 1500);
