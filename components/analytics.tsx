@@ -61,6 +61,16 @@ export const BearEvents = {
   touchStart: () => trackEvent("bear_touch_start"),
   touchEnd: (durationMs: number) =>
     trackEvent("bear_touch_end", { touch_duration_ms: durationMs }),
-  sessionEnd: (totalDurationMs: number) =>
-    trackEvent("bear_session_end", { total_session_duration_ms: totalDurationMs }),
+  sessionEnd: (
+    sessionDurationMs: number,
+    totalTouchDurationMs: number,
+    maxTouchDurationMs: number,
+    medianTouchDurationMs: number
+  ) =>
+    trackEvent("bear_session_end", {
+      session_duration_ms: sessionDurationMs,
+      total_touch_duration_ms: totalTouchDurationMs,
+      max_touch_duration_ms: maxTouchDurationMs,
+      median_touch_duration_ms: medianTouchDurationMs,
+    }),
 }

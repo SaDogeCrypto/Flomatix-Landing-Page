@@ -15,6 +15,11 @@ export default function BearPage() {
   const sessionStartTimeRef = useRef<number>(0);
   const touchCountRef = useRef(0);
 
+  // Duration tracking
+  const totalTouchDurationRef = useRef(0);
+  const maxTouchDurationRef = useRef(0);
+  const touchDurationsRef = useRef<number[]>([]);
+
   // Track page load and session
   useEffect(() => {
     sessionStartTimeRef.current = Date.now();
@@ -23,7 +28,17 @@ export default function BearPage() {
     // Track session end on page unload
     const handleUnload = () => {
       const sessionDuration = Date.now() - sessionStartTimeRef.current;
-      BearEvents.sessionEnd(sessionDuration);
+      const durations = touchDurationsRef.current;
+      const medianDuration = durations.length > 0
+        ? durations.sort((a, b) => a - b)[Math.floor(durations.length / 2)]
+        : 0;
+
+      BearEvents.sessionEnd(
+        sessionDuration,
+        totalTouchDurationRef.current,
+        maxTouchDurationRef.current,
+        medianDuration
+      );
     };
 
     window.addEventListener('beforeunload', handleUnload);
@@ -171,6 +186,14 @@ export default function BearPage() {
 
     // Track touch duration
     const touchDuration = Date.now() - touchStartTimeRef.current;
+
+    // Accumulate duration stats
+    totalTouchDurationRef.current += touchDuration;
+    touchDurationsRef.current.push(touchDuration);
+    if (touchDuration > maxTouchDurationRef.current) {
+      maxTouchDurationRef.current = touchDuration;
+    }
+
     BearEvents.touchEnd(touchDuration);
 
     animateLeanReturn();
