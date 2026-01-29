@@ -5,13 +5,18 @@ export function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-ms-gray-30">
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 flex items-center justify-between h-24 md:h-20">
-        <Link href="/" className="flex items-center">
-          <img
-            src="/images/buzz-logo.png"
-            alt="Buzz by Flomatix"
-            className="h-20 md:h-16 w-auto"
-          />
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link href="/" className="flex items-center">
+            <img
+              src="/images/buzz-logo.png"
+              alt="Buzz by Flomatix"
+              className="h-20 md:h-16 w-auto"
+            />
+          </Link>
+          <span className="text-xl md:text-2xl font-bold text-ms-gray-90">
+            A Creative Technology LLC business
+          </span>
+        </div>
 
         <button className="md:hidden p-2">
           <Menu className="w-6 h-6 text-ms-gray-90" />
