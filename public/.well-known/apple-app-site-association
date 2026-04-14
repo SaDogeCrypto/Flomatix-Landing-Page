@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TX359BWH8H.com.creativetechnology.Shoot"],
+        "components": [
+          {
+            "/": "/tiktok-share",
+            "comment": "TikTok share redirect"
+          }
+        ]
+      }
+    ]
+  }
+}
