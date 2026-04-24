@@ -2,11 +2,15 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["TX359BWH8H.com.creativetechnology.Shoot"],
+        "appIDs": [
+          "K4D75B6RH6.com.creativetechnology.ShootApps"
+        ],
         "components": [
           {
-            "/": "/tiktok-share",
-            "comment": "TikTok share redirect"
+            "/": "/tiktok-share/*"
+          },
+          {
+            "/": "/tiktok-share"
           }
         ]
       }
