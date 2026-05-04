@@ -1,21 +1,13 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
 import "./globals.css"
 import { Toaster } from "@/components/ui/toaster"
 import { GoogleAnalytics } from "@/components/analytics"
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-poppins",
-})
-
 export const metadata: Metadata = {
-  title: "Buzz - One-Touch Follow-Ups for Microsoft Teams",
+  title: "Flomatix - Creative Technology LLC",
   description:
-    "Buzz is your follow-up assistant for Microsoft Teams. Schedule gentle reminders and get one-tap responses — Done, Snooze, or Reschedule.",
-  generator: "v0.app",
+    "Official legal, support, and platform-link resources for apps published by Creative Technology LLC.",
   icons: {
     icon: "/favicon.png",
     apple: "/apple-icon.png",
@@ -28,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en">
       <body className="font-sans antialiased">
         <GoogleAnalytics />
         {children}

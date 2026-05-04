@@ -1,43 +1,19 @@
-import { Download, Menu } from "lucide-react"
 import Link from "next/link"
 
 export function Navigation() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-ms-gray-30">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-6 flex items-center justify-between h-24 md:h-20">
-        <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/images/buzz-logo.png"
-              alt="Buzz by Flomatix"
-              className="h-20 md:h-16 w-auto"
-            />
-          </Link>
-          <span className="text-xl md:text-2xl font-bold text-ms-gray-90">
-            A Creative Technology LLC business
-          </span>
-        </div>
+    <nav className="border-b border-ms-gray-30 bg-white">
+      <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-4 md:px-6">
+        <Link href="/" className="text-base font-semibold text-ms-black">
+          Flomatix
+        </Link>
 
-        <button className="md:hidden p-2">
-          <Menu className="w-6 h-6 text-ms-gray-90" />
-        </button>
-
-        <div className="hidden md:flex items-center gap-8">
-          <Link href="#features" className="text-sm text-ms-gray-90 hover:text-ms-blue transition-colors">
-            Features
+        <div className="flex items-center gap-5 text-sm text-ms-gray-130">
+          <Link href="/#apps" className="hover:text-ms-black transition-colors">
+            Apps
           </Link>
-          <Link href="#how-it-works" className="text-sm text-ms-gray-90 hover:text-ms-blue transition-colors">
-            How It Works
-          </Link>
-          <Link href="#pricing" className="text-sm text-ms-gray-90 hover:text-ms-blue transition-colors">
-            Pricing
-          </Link>
-          <Link
-            href="#"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-ms-blue text-white rounded font-semibold text-sm hover:bg-ms-blue-dark transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            Get Buzz for Teams
+          <Link href="/support" className="hover:text-ms-black transition-colors">
+            Support
           </Link>
         </div>
       </div>

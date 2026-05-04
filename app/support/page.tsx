@@ -1,76 +1,36 @@
-import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { SupportForm } from "@/components/support-form"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Navigation } from "@/components/navigation"
+import Link from "next/link"
 
 export const metadata = {
-  title: "Support - Buzz by Flomatix",
-  description: "Get help with Buzz. Contact our support team for assistance.",
+  title: "Support - Creative Technology LLC",
+  description: "Support resources for apps published by Creative Technology LLC.",
 }
 
 export default function SupportPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white text-ms-black">
       <Navigation />
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="mx-auto max-w-3xl">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-ms-gray-90 mb-4">How can we help?</h1>
-            <p className="text-lg text-ms-gray-130">
-              Our support team is here to assist you. Fill out the form below and we'll get back to you as soon as
-              possible.
-            </p>
-          </div>
+      <section className="mx-auto max-w-3xl px-4 py-14 md:px-6 md:py-20">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-ms-gray-130">
+          Creative Technology LLC
+        </p>
+        <h1 className="text-4xl font-semibold text-ms-black">Support</h1>
+        <p className="mt-6 leading-7 text-ms-gray-130">
+          For general support, contact{" "}
+          <a className="text-ms-blue hover:underline" href="mailto:support@flomatix.ai">
+            support@flomatix.ai
+          </a>
+          .
+        </p>
 
-          <div className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-ms-gray-90 mb-6">Frequently Asked Questions</h2>
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="text-left">How do I send a buzz?</AccordionTrigger>
-                <AccordionContent className="text-ms-gray-130">
-                  Open Buzz in Teams and use the composer card to select a recipient, write your message, and choose
-                  when to deliver it.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-2">
-                <AccordionTrigger className="text-left">Can the recipient see who sent the buzz?</AccordionTrigger>
-                <AccordionContent className="text-ms-gray-130">
-                  Yes, the buzz includes your name so the recipient knows who's checking in.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3">
-                <AccordionTrigger className="text-left">
-                  What happens if the recipient doesn't have Buzz installed?
-                </AccordionTrigger>
-                <AccordionContent className="text-ms-gray-130">
-                  Buzz will attempt to install itself for the recipient (if your IT admin has enabled this). Otherwise,
-                  you'll be notified that the buzz couldn't be delivered.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-4">
-                <AccordionTrigger className="text-left">
-                  Is there a limit to how many buzzes I can send?
-                </AccordionTrigger>
-                <AccordionContent className="text-ms-gray-130">
-                  To ensure fair usage, there's a limit of 50 buzzes per hour per user.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-5">
-                <AccordionTrigger className="text-left">How do I cancel a scheduled buzz?</AccordionTrigger>
-                <AccordionContent className="text-ms-gray-130">
-                  You can simply click cancel on any undelivered Buzz to cancel it.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-
-          <SupportForm />
+        <div className="mt-10 rounded-lg border border-ms-gray-30 p-6">
+          <h2 className="text-2xl font-semibold text-ms-black">Drop</h2>
+          <Link className="mt-5 inline-block text-ms-blue hover:underline" href="/apps/drop/support">
+            View Drop Support
+          </Link>
         </div>
-      </div>
+      </section>
       <Footer />
     </main>
   )
