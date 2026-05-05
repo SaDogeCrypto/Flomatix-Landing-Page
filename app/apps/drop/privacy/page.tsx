@@ -28,7 +28,7 @@ export default function DropPrivacyPage() {
               <li>Front camera, to capture photos and video during a guided Drop session</li>
               <li>
                 Photo library, only when you save or share a completed video. Drop writes the final composed video to
-                your Photos and reads only Photos assets it creates when preparing a video for sharing.
+                your Photos and does not read your existing photos or videos.
               </li>
             </ul>
             <p>
