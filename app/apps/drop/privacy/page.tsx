@@ -25,10 +25,10 @@ export default function DropPrivacyPage() {
             <h2 className="text-2xl font-semibold text-ms-black">What Drop does on your device</h2>
             <p>When you use Drop, the app accesses your iPhone's:</p>
             <ul className="list-disc space-y-2 pl-6">
-              <li>Front camera, to capture photos and video during a guided shoot session</li>
+              <li>Front camera, to capture photos and video during a guided Drop session</li>
               <li>
-                Photo library, only when you save a completed shoot. Drop writes the final composed video to your Photos
-                and does not read existing photos.
+                Photo library, only when you save or share a completed video. Drop writes the final composed video to
+                your Photos and reads only Photos assets it creates when preparing a video for sharing.
               </li>
             </ul>
             <p>
@@ -53,13 +53,13 @@ export default function DropPrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-ms-black">Network usage</h2>
             <p>
-              Drop connects to a single web address to download the current week's guided shoot configuration:{" "}
+              Drop connects to a single web address to download the current week's guided Drop configuration:{" "}
               <code className="rounded bg-ms-gray-10 px-1.5 py-1 text-sm text-ms-black">
                 sadogecrypto.github.io/shoot-templates/weekly-drop-feed.json
               </code>
             </p>
             <p>
-              This file contains only the configuration for the current shoot, such as which poses to capture and which
+              This file contains only the configuration for the current Drop, such as which poses to capture and which
               song to suggest, and contains no information about you. The request includes only standard web headers and
               no identifiers.
             </p>
@@ -68,9 +68,9 @@ export default function DropPrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-ms-black">Sharing to other apps</h2>
             <p>
-              When you share a video from Drop to another app such as TikTok, the video file is handed off to that app
-              via the standard iOS share sheet. Once the file is in that app, what happens to it is governed by that
-              app's privacy policy, not Drop's.
+              When you share a video from Drop to another app such as TikTok, Drop prepares the video on your device and
+              hands it off through iOS sharing or the TikTok sharing flow. Once the file is in that app, what happens to
+              it is governed by that app's privacy policy, not Drop's.
             </p>
           </section>
 

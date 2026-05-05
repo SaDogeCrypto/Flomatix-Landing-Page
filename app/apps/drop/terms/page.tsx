@@ -51,7 +51,7 @@ export default function DropTermsPage() {
           <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-ms-black">Saving and sharing</h2>
             <p>
-              If you choose to save a completed shoot, Drop writes the final composed video to your Photos library. You
+              If you choose to save a completed video, Drop writes the final composed video to your Photos library. You
               are responsible for deciding what to save, delete, or share.
             </p>
             <p>
