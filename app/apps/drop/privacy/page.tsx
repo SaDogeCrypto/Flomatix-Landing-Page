@@ -13,7 +13,7 @@ export default function DropPrivacyPage() {
       <article className="mx-auto max-w-3xl px-4 py-14 md:px-6 md:py-20">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-ms-gray-130">Drop</p>
         <h1 className="text-4xl font-semibold text-ms-black">Drop Privacy Policy</h1>
-        <p className="mt-4 text-ms-gray-130">Last updated: May 3, 2026</p>
+        <p className="mt-4 text-ms-gray-130">Last updated: May 5, 2026</p>
 
         <section className="mt-10 space-y-5 leading-7 text-ms-gray-130">
           <p>
@@ -29,6 +29,10 @@ export default function DropPrivacyPage() {
               <li>
                 Photo library, only when you save or share a completed video. Drop writes the final composed video to
                 your Photos and does not read your existing photos or videos.
+              </li>
+              <li>
+                Notifications, only if you allow them, to remind you when a new weekly Drop is available. Drop does not
+                collect notification tokens or use notifications for tracking.
               </li>
             </ul>
             <p>
