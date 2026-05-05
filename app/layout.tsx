@@ -1,7 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import { Toaster } from "@/components/ui/toaster"
 import { GoogleAnalytics } from "@/components/analytics"
 
 export const metadata: Metadata = {
@@ -9,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Official legal, support, and platform-link resources for apps published by Creative Technology LLC.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/icon.svg",
     apple: "/apple-icon.png",
   },
 }
@@ -24,7 +23,6 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <GoogleAnalytics />
         {children}
-        <Toaster />
       </body>
     </html>
   )
