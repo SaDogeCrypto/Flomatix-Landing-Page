@@ -13,7 +13,7 @@ export default function DropPrivacyPage() {
       <article className="mx-auto max-w-3xl px-4 py-14 md:px-6 md:py-20">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-ms-gray-130">Drop</p>
         <h1 className="text-4xl font-semibold text-ms-black">Drop Privacy Policy</h1>
-        <p className="mt-4 text-ms-gray-130">Last updated: May 5, 2026</p>
+        <p className="mt-4 text-ms-gray-130">Last updated: May 7, 2026</p>
 
         <section className="mt-10 space-y-5 leading-7 text-ms-gray-130">
           <p>
@@ -48,7 +48,7 @@ export default function DropPrivacyPage() {
               <li>Create user accounts or collect login information</li>
               <li>Collect, transmit, or store any personally identifiable information</li>
               <li>Use analytics, advertising identifiers, or tracking technologies</li>
-              <li>Share data with third parties</li>
+              <li>Share your photos, videos, contacts, location, or other personal content with third parties</li>
               <li>Read your contacts, location, calendar, or any other personal data</li>
               <li>Use a microphone or record audio</li>
             </ul>
@@ -70,6 +70,21 @@ export default function DropPrivacyPage() {
           </section>
 
           <section className="space-y-3">
+            <h2 className="text-2xl font-semibold text-ms-black">Subscriptions and purchases</h2>
+            <p>
+              Drop offers an optional subscription called Drop Premium. Purchases and free trials are processed by Apple
+              through the App Store. Drop uses RevenueCat to manage subscription status and determine whether Drop
+              Premium is active.
+            </p>
+            <p>
+              For this purpose, Apple and RevenueCat may process subscription-related information such as an anonymous
+              app user identifier, product identifier, purchase status, transaction or receipt information, country,
+              currency, renewal status, and expiration date. Drop does not create an account for you and does not send
+              RevenueCat your photos, videos, contacts, location, or login information.
+            </p>
+          </section>
+
+          <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-ms-black">Sharing to other apps</h2>
             <p>
               When you share a video from Drop to another app such as TikTok, Drop prepares the video on your device and
@@ -81,9 +96,10 @@ export default function DropPrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-ms-black">Data retention</h2>
             <p>
-              Because Drop does not collect data, there is no data retention policy on our side. The photos and videos
-              you create remain on your device under your control. You can delete them at any time by removing them from
-              your Photos library or by uninstalling the app.
+              The photos and videos you create remain on your device under your control. You can delete them at any time
+              by removing them from your Photos library or by uninstalling the app. Subscription and purchase records are
+              retained by Apple and RevenueCat as needed to operate purchases, renewals, refunds, restores, and
+              subscription access.
             </p>
           </section>
 
