@@ -47,7 +47,7 @@ export default function DropPrivacyPage() {
             <ul className="list-disc space-y-2 pl-6">
               <li>Create user accounts or collect login information</li>
               <li>Collect, transmit, or store any personally identifiable information</li>
-              <li>Use analytics, advertising identifiers, or tracking technologies</li>
+              <li>Use advertising identifiers or tracking technologies</li>
               <li>Share your photos, videos, contacts, location, or other personal content with third parties</li>
               <li>Read your contacts, location, calendar, or any other personal data</li>
               <li>Use a microphone or record audio</li>
@@ -85,6 +85,21 @@ export default function DropPrivacyPage() {
           </section>
 
           <section className="space-y-3">
+            <h2 className="text-2xl font-semibold text-ms-black">Attribution and diagnostics</h2>
+            <p>
+              Drop uses AppsFlyer to understand basic app installation and campaign attribution, and to help diagnose
+              whether the app is working correctly. Drop uses AppsFlyer's Strict SDK, which is designed not to collect
+              the iOS advertising identifier (IDFA).
+            </p>
+            <p>
+              AppsFlyer may process limited technical and attribution information, such as app version, device type,
+              operating system version, approximate region, install or app-open events, and campaign attribution data.
+              Drop does not send AppsFlyer your photos, videos, contacts, location, login information, or guided shoot
+              content.
+            </p>
+          </section>
+
+          <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-ms-black">Sharing to other apps</h2>
             <p>
               When you share a video from Drop to another app such as TikTok, Drop prepares the video on your device and
@@ -99,7 +114,8 @@ export default function DropPrivacyPage() {
               The photos and videos you create remain on your device under your control. You can delete them at any time
               by removing them from your Photos library or by uninstalling the app. Subscription and purchase records are
               retained by Apple and RevenueCat as needed to operate purchases, renewals, refunds, restores, and
-              subscription access.
+              subscription access. AppsFlyer may retain attribution and diagnostic records according to its own service
+              terms and retention practices.
             </p>
           </section>
 
